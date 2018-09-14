@@ -1,5 +1,5 @@
-##use search() function
-# coding: utf-8
+
+# use search() function
 
 # In[1]:
 
@@ -141,13 +141,21 @@ No offense, but this is for your own benefit. ''',
 ]
 
 
-# In[14]:
+# In[4]:
 
 
 def dict_search_words(feedback,stopwords):
     all_words=[]
+    index_of_confession={}
     for i in range(0,len(feedback)):
-        all_words += word_tokenize(feedback[i].lower())
+        words_in_sentence=word_tokenize(feedback[i].lower())
+        all_words += words_in_sentence
+        for word in words_in_sentence:
+            if word not in index_of_confession.keys():
+                index_of_confession[word]=[]
+            if i not in index_of_confession[word]:
+                index_of_confession[word].append(i)
+    
     all_words=list(set(all_words))
     
     
@@ -177,14 +185,16 @@ def dict_search_words(feedback,stopwords):
                     temp_dict[word[length]].append(word)
             dict_words[key]=temp_dict
         length+=1
-    return dict_words
+    return dict_words,index_of_confession
 
 
-# In[16]:
+
+
+# In[6]:
 
 
 def search():
-    dict_search=dict_search_words(feedback,stopwords)
+    dict_search,index_of_confession=dict_search_words(feedback,stopwords)
     string = input().lower()
 
     search_words=dict_search[string[0]]
@@ -201,10 +211,15 @@ def search():
         for i in range(0,len(remove)):
             search_words.remove(remove[0])
             remove=remove[1:]
-    return search_words
+    searched_index=[]
+    for word in search_words:
+        searched_index += index_of_confession[word]
+    searched_index=list(set(searched_index))
+    searched_index.sort()
+    return search_words,searched_index
 
 
-# In[17]:
+# In[7]:
 
 
 search()
