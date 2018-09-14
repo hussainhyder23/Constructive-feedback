@@ -1,5 +1,7 @@
 
-# use search() function
+# coding: utf-8
+
+# ## use search() function
 
 # In[1]:
 
@@ -8,6 +10,7 @@ import nltk
 from nltk import word_tokenize
 import nltk
 from nltk.corpus import stopwords
+import NLP
 
 
 # In[2]:
@@ -144,6 +147,12 @@ No offense, but this is for your own benefit. ''',
 # In[4]:
 
 
+filtered,profanity,polarity=NLP.filter(feedback)
+
+
+# In[5]:
+
+
 def dict_search_words(feedback,stopwords):
     all_words=[]
     index_of_confession={}
@@ -188,13 +197,17 @@ def dict_search_words(feedback,stopwords):
     return dict_words,index_of_confession
 
 
-
-
 # In[6]:
 
 
+filtered
+
+
+# In[8]:
+
+
 def search():
-    dict_search,index_of_confession=dict_search_words(feedback,stopwords)
+    dict_search,index_of_confession=dict_search_words(filtered,stopwords)
     string = input().lower()
 
     search_words=dict_search[string[0]]
@@ -219,8 +232,9 @@ def search():
     return search_words,searched_index
 
 
-# In[7]:
+# In[9]:
 
 
-search()
+search_words,searched_index=search()
+print(search_words,searched_index)
 
