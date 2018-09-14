@@ -1,7 +1,5 @@
 
-# coding: utf-8
-
-# ## use search() function
+# use search() function
 
 # In[1]:
 
@@ -190,10 +188,6 @@ def dict_search_words(feedback,stopwords):
     return dict_words,index_of_confession
 
 
-# In[5]:
-
-
-dict_search_words(feedback,stopwords)
 
 
 # In[6]:
