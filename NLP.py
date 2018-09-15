@@ -1,6 +1,7 @@
 
 # coding: utf-8
 
+
 # In[1]:
 
 
@@ -400,8 +401,6 @@ def filter(feedback):
 	# In[10]:
 
 
-	filter_indices
-
 
 	# In[11]:
 
@@ -417,17 +416,20 @@ def filter(feedback):
 	return filtered,profanity,polarity
 
 def data(feedback,stopwords):
-   feedback_dict={}
+   feedback_filtered=[]
    for i in range(0,len(feedback)):
-       
-       feedback_dict[str(i)]=feedback[i]
+       temp={}
+       temp['id']=str(i)
+       temp['feedback']=feedback[i]
+       print(temp)
+       feedback_filtered.append(temp)
 
-   return feedback_dict
+   return feedback_filtered
 
 
-if __name__ == '__main__':
+#if __name__ == '__main__':
 	
-    filtered,profanity,polarity=filter(feedback)
-    feedback=data(filtered,stopwords)
-    print(feedback)
+filtered,profanity,polarity=filter(feedback)
+feedback=data(filtered,stopwords)
+print(feedback)
 
