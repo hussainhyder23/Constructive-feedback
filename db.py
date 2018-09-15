@@ -1,12 +1,16 @@
 
 from pymongo import MongoClient
+
 import NLP
+=======
+
 
 client = MongoClient()
 client = MongoClient('mongodb://localhost:27017/')
 
 mydb=client["feed"]
 mycol=mydb["feedbacks"]
+
 
 
 feedback=[
@@ -249,6 +253,5 @@ feedback=NLP.data(filtered,stopwords)
 
 
 
-#x=mycol.insert_many([feedback])
+x=mycol.insert_many([feedback])
 
-x
