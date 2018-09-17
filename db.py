@@ -2,7 +2,8 @@
 from pymongo import MongoClient
 
 import NLP
-=======
+from nltk.corpus import stopwords
+
 
 
 client = MongoClient()
@@ -244,7 +245,7 @@ Cheers!""",
 
 ]
 
-
+stopwords=list(set(stopwords.words('english')))
 
 filtered,profanity,polarity=NLP.filter(feedback)
 feedback=NLP.data(filtered,stopwords)
@@ -253,5 +254,14 @@ feedback=NLP.data(filtered,stopwords)
 
 
 
-x=mycol.insert_many([feedback])
+x=mycol.insert_many(feedback)
 
+
+def fetch():
+
+	lis=[]
+	for feed in mycol.find():
+		lis.append(feed)
+	return lis
+abcd=fetch()
+print(abcd[6])

@@ -1,4 +1,7 @@
 from flask import Flask, render_template
+from db import fetch
+
+feed_data=fetch()
 
 app=Flask(__name__)
 
@@ -7,7 +10,9 @@ app=Flask(__name__)
 def home():
 	return render_template('index.html')
 
-
+@app.route('/apps')
+def apps():
+	return render_template('app.html',feed_data=feed_data)
 
 
 
