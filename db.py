@@ -250,11 +250,10 @@ stopwords=list(set(stopwords.words('english')))
 filtered,profanity,polarity=NLP.filter(feedback)
 feedback=NLP.data(filtered,stopwords)
 
-#print(feedback)
 
 
 
-x=mycol.insert_many(feedback)
+#x=mycol.insert_many(feedback)
 
 
 def fetch():
@@ -263,5 +262,4 @@ def fetch():
 	for feed in mycol.find():
 		lis.append(feed)
 	return lis
-abcd=fetch()
-print(abcd[6])
+
